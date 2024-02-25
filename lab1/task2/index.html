@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task1</title>
+  </head>
+  <body>
+    <div>
+      <div>
+        <span>Red</span>
+        <span>
+          <input
+            type="range"
+            name="red"
+            id="red"
+            min="0"
+            max="255"
+            value="0"
+            step="1"
+            oninput="changeColor()"
+          />
+        </span>
+      </div>
+      <div>
+        <span>Green</span>
+        <span
+          ><input
+            type="range"
+            name="green"
+            id="green"
+            min="0"
+            max="255"
+            step="1"
+            value="0"
+            oninput="changeColor()"
+        /></span>
+      </div>
+      <div>
+        <span>Blue</span>
+        <span
+          ><input
+            type="range"
+            name="blue"
+            id="blue"
+            min="0"
+            max="255"
+            value="0"
+            step="1"
+            oninput="changeColor()"
+        /></span>
+      </div>
+      <div>
+        <span>Alpha</span>
+        <span
+          ><input
+            type="range"
+            name="alpha"
+            id="alpha"
+            min="0"
+            max="1"
+            step="0.1"
+            value="1"
+            oninput="changeColor()"
+        /></span>
+      </div>
+    </div>
+    <p id="text">Change the 3 color ranges above and observe my color change</p>
+
+    <script>
+      function changeColor() {
+        let red = document.getElementById("red").value;
+        let green = document.getElementById("green").value;
+        let blue = document.getElementById("blue").value;
+        let alpha = document.getElementById("alpha").value;
+
+        let color =
+          "rgba(" + red + "," + green + "," + blue + "," + alpha + ")";
+        document.getElementById("text").style.color = color;
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task1</title>
+  </head>
+  <body>
+    <div>
+      <video src="./frozen.mp4" id="video" ontimeupdate="updateRange()"></video>
+    </div>
+    <div>
+      <div>
+        <input type="range" id="range" value="0" oninput="seek()" />
+      </div>
+      <div>
+        <span><input type="button" value="Play" onclick="play()" /></span>
+        <span><input type="button" value="Pause" onclick="pause()" /></span>
+        <span><input type="button" value="<<" onclick="rewind()" /></span>
+        <span><input type="button" value="<" onclick="backward()" /></span>
+        <span><input type="button" value=">" onclick="forward()" /></span>
+        <span><input type="button" value=">>" onclick="fastForward()" /></span>
+        <span
+          ><input
+            type="range"
+            value=""
+            id="volume"
+            min="0"
+            max="100"
+            value="50"
+            oninput="setVolume()"
+        /></span>
+        <span
+          ><input type="button" id="mute" value="Mute" onclick="toggleMute()"
+        /></span>
+        <span
+          ><input
+            type="button"
+            value="Full Screen"
+            onclick="toggleFullScreen()"
+        /></span>
+      </div>
+      <div>
+        <span>Speed</span>
+        <span
+          ><input
+            type="range"
+            min="0.1"
+            max="2"
+            value="1"
+            id="speed"
+            step="0.5"
+            oninput="changeSpeed()"
+        /></span>
+      </div>
+    </div>
+    <script>
+      let video = document.getElementById("video");
+      let range = document.getElementById("range");
+      let volume = document.getElementById("volume");
+      let speed = document.getElementById("speed");
+      let mute = document.getElementById("mute");
+      let currentVolume = volume.value;
+
+      function setRanges() {
+        range.setAttribute("min", 0);
+        range.setAttribute("max", video.duration);
+        range.setAttribute("value", 0);
+      }
+
+      function play() {
+        video.play();
+        setVolume();
+        changeSpeed();
+        setRanges();
+      }
+
+      function pause() {
+        video.pause();
+      }
+
+      function seek() {
+        video.currentTime = range.value;
+      }
+
+      function rewind() {
+        video.currentTime -= 10;
+      }
+
+      function backward() {
+        video.currentTime -= 5;
+      }
+
+      function forward() {
+        video.currentTime += 5;
+      }
+
+      function fastForward() {
+        video.currentTime += 10;
+      }
+
+      function setVolume() {
+        video.volume = volume.value / 100;
+        currentVolume = volume.value;
+      }
+
+      function toggleMute() {
+        video.muted = !video.muted;
+
+        if (video.muted) {
+          mute.value = "Unmute";
+          volume.value = 0;
+        } else {
+          volume.value = currentVolume;
+          mute.value = "Mute";
+        }
+      }
+
+      function toggleFullScreen() {
+        if (video.requestFullscreen) {
+          video.requestFullscreen();
+        } else if (video.mozRequestFullScreen) {
+          video.mozRequestFullScreen();
+        } else if (video.webkitRequestFullscreen) {
+          video.webkitRequestFullscreen();
+        }
+      }
+
+      function changeSpeed() {
+        video.playbackRate = speed.value;
+      }
+
+      function updateRange() {
+        range.value = video.currentTime;
+      }
+    </script>
+  </body>
+</html>
