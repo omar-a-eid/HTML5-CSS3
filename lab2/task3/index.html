@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <canvas
+      id="canvas"
+      width="400"
+      height="350"
+      style="border: 1px solid #000"
+    ></canvas>
+
+    <script>
+      let canvas = document.getElementById("canvas");
+      let ctx = canvas.getContext("2d");
+
+      let xA = 100,
+        yA = 201;
+      let xB = 40,
+        yB = 200;
+      let xC = 100,
+        yC = 30;
+
+      ctx.moveTo(xA, yA);
+      ctx.lineTo(xB, yB);
+      ctx.lineTo(xC, yC);
+      ctx.fillStyle = "red";
+      ctx.fill();
+
+      ctx.font = "14px Arial";
+      ctx.fillStyle = "black";
+      ctx.fillText("a", xA - 35, yA + 15);
+      ctx.fillText("b", xB + 70, yB - 70);
+      ctx.fillText("c", xC - 50, yC + 100);
+
+      ctx.font = "bold 16px Arial";
+      ctx.fillStyle = "black";
+      ctx.fillText("according to pythagoras' theorem", 10, 280);
+
+      ctx.font = "italic 20px Arial";
+      ctx.fillStyle = "red";
+      ctx.fillText("c = √(a² + b²)", 10, 310);
+    </script>
+  </body>
+</html>

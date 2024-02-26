@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <canvas
+      id="canvas"
+      width="900"
+      height="900"
+      style="border: 1px solid #000"
+    ></canvas>
+    <script>
+      let canvas = document.getElementById("canvas");
+      let ctx = canvas.getContext("2d");
+
+      function createGradient() {
+        let gradient = ctx.createLinearGradient(450, 0, 450, 900);
+        gradient.addColorStop(0, "#0096ff");
+        gradient.addColorStop(0.4, "white");
+        gradient.addColorStop(0.4, "green");
+        gradient.addColorStop(0.7, "lightgreen");
+        gradient.addColorStop(1, "lightgreen");
+        return gradient;
+      }
+
+      ctx.fillStyle = createGradient();
+      ctx.fillRect(40, 40, 800, 600);
+
+      ctx.fillStyle = "black";
+      ctx.fillRect(200, 160, 5, 280);
+      ctx.fillRect(560, 160, 5, 280);
+      ctx.fillRect(200, 160, 360, 5);
+    </script>
+  </body>
+</html>

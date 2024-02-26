@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <canvas id="canvas" width="500" height="600"></canvas>
+    <script>
+      let canvas = document.getElementById("canvas");
+      if (canvas.getContext) {
+        let ctx = canvas.getContext("2d");
+
+        let outerGradient = ctx.createRadialGradient(
+          150,
+          150,
+          50,
+          150,
+          150,
+          180
+        );
+        outerGradient.addColorStop(0, "#038599");
+        outerGradient.addColorStop(1, "white");
+
+        ctx.beginPath();
+        ctx.arc(150, 150, 150, 0, 2 * Math.PI);
+        ctx.fillStyle = outerGradient;
+        ctx.fill();
+
+        let innerGradient = ctx.createLinearGradient(100, 100, 290, 200);
+        innerGradient.addColorStop(0, "#038599");
+        innerGradient.addColorStop(1, "#27c3db");
+        ctx.beginPath();
+        ctx.arc(150, 150, 120, 0, 2 * Math.PI);
+        ctx.fillStyle = innerGradient;
+        ctx.fill();
+
+        ctx.font = "250px Arial";
+        ctx.fillStyle = "white";
+        ctx.textAlign = "center";
+        ctx.textBaseline = "middle";
+        ctx.fillText("N", 150, 170);
+      }
+    </script>
+  </body>
+</html>
